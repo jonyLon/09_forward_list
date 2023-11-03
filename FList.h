@@ -107,6 +107,16 @@ public:
 
 		return newList;
 	}
+	FList clone() const {
+		FList newList;
+		auto* tmp = head;
+		while (tmp != nullptr)
+		{
+			newList.addTail(tmp->data);
+			tmp = tmp->next;
+		}
+		return newList;
+	}
 	FList operator+(const FList& other) const {
 		FList newList;
 		auto* tmp = head;

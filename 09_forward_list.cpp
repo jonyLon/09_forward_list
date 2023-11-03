@@ -30,4 +30,6 @@ int main()
     test2.print();
     FList<int> test3 = list2 * list;
     test3.print();
+
+    FList<int> test4 = test3.clone();
 }
