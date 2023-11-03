@@ -14,8 +14,6 @@ struct Node {
 	}
 };
 
-
-
 template <typename T>
 class FList
 {
@@ -33,6 +31,7 @@ public:
 			cout << tmp->data << "\t";
 			tmp = tmp->next;
 		}
+		cout << endl;
 		cout << endl;
 	};
 	bool isEmpty() const {
@@ -108,10 +107,51 @@ public:
 
 		return newList;
 	}
+	FList operator+(const FList& other) const {
+		FList newList;
+		auto* tmp = head;
+		auto* ptr = other.head;
+		while (tmp != nullptr)
+		{
+			newList.addTail(tmp->data);
+			tmp = tmp->next;
+		}
+		while (ptr != nullptr)
+		{
+			newList.addTail(ptr->data);
+			ptr = ptr->next;
+		}
+		return newList;
+	}
+
+	FList operator*(const FList& other) const {
+		FList newList;
+		auto* ptr = head;
+		while (ptr != nullptr)
+		{
+			if (other.contains(ptr->data)) {
+				newList.addTail(ptr->data);
+			}
+			ptr = ptr->next;
+		}
+
+		return newList;
+	}
 	
 private:
 	Node <T>* head = nullptr;
 	Node <T>* tail = nullptr;
 	size_t size = 0;
+	bool contains(const T& data) const {
+		auto* current = head;
+		while (current != nullptr)
+		{
+			if (current->data == data) {
+				return true;
+			}
+			current = current->next;
+		}
+		return false;
+	}
 };
 
